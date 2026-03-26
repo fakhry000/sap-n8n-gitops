@@ -1,1 +1,43 @@
 
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: redis-hr
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: redis
+    targetRevision: 20.11.3
+    helm:
+      releaseName: redis-hr
+      values: |
+        architecture: standalone
+
+        auth:
+          enabled: true
+          password: "RedisHrDemo123!"
+
+        master:
+          persistence:
+            enabled: false
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 300m
+              memory: 256Mi
+
+        replica:
+          replicaCount: 0
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: sap-n8n-kyma
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false
