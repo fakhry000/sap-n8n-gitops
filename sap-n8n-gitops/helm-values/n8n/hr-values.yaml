@@ -21,10 +21,10 @@ webhook:
 
 database:
   type: postgresdb
-  host: postgres-fb04e5ee-2c80-4773-94bf-47d64c10dee7.c24srvdukvjo.us-east-1.rds.amazonaws.com
+  host: postgres-0c548fc8-fc4a-4fbe-adfe-6f12e1795f34.c24srvdukvjo.us-east-1.rds.amazonaws.com
   port: 1470
-  database: RKsHRzqemrfx
-  user: postgres
+  database: FYkYoolAgeWd
+  user: 074d01b045cd
   schema: n8n_hr
   passwordSecret:
     name: n8n-db-password
@@ -33,6 +33,10 @@ database:
 redis:
   host: redis-hr-master
   port: 6379
+
+n8n:
+  host: sap-n8n-hr.c-5e397ae.kyma.ondemand.com
+  protocol: https
 
 secretRefs:
   existingSecret: n8n-hr-core-secret
