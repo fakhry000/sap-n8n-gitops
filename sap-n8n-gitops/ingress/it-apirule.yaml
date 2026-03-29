@@ -1,16 +1,23 @@
-apiVersion: gateway.kyma-project.io/v1beta1
+apiVersion: gateway.kyma-project.io/v2
 kind: APIRule
 metadata:
   name: n8n-it
   namespace: sap-n8n-kyma
 spec:
-  host: ITservices.c-5e397ae.kyma.ondemand.com
+  hosts:
+    - sandbox-n8n-itservices.c-5e397ae.kyma.ondemand.com
   service:
-    name: n8n-it
-    port: 80
+    name: n8n-it-main
+    port: 5678
   gateway: kyma-system/kyma-gateway
   rules:
-    - path: /.*
-      methods: ["GET","POST","PUT","DELETE","PATCH"]
-      accessStrategies:
-        - handler: allow
+    - path: /*
+      methods:
+        - GET
+        - POST
+        - PUT
+        - PATCH
+        - DELETE
+        - HEAD
+        - OPTIONS
+      noAuth: true
