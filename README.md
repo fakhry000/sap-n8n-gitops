@@ -1,1 +1,0 @@
-# sap-n8n-gitops
