@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: n8n-it
+  namespace: sap-n8n-kyma
+spec:
+  hosts:
+    - ITservices.c-5e397ae.kyma.ondemand.com
+  gateways:
+    - kyma-system/kyma-gateway
+  http:
+    - route:
+        - destination:
+            host: n8n-it
+            port:
+              number: 80

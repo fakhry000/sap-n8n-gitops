@@ -1,1 +1,16 @@
-
+apiVersion: gateway.kyma-project.io/v1beta1
+kind: APIRule
+metadata:
+  name: n8n-sales
+  namespace: sap-n8n-kyma
+spec:
+  host: sales.c-5e397ae.kyma.ondemand.com
+  service:
+    name: n8n-sales
+    port: 80
+  gateway: kyma-system/kyma-gateway
+  rules:
+    - path: /.*
+      methods: ["GET","POST","PUT","DELETE","PATCH"]
+      accessStrategies:
+        - handler: allow
