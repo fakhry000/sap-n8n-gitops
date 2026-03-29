@@ -21,24 +21,18 @@ webhook:
 
 database:
   type: postgresdb
-  postgresdb:
-    host: postgres-fb04e5ee-2c80-4773-94bf-47d64c10dee7.c24srvdukvjo.us-east-1.rds.amazonaws.com
-    port: 1470
-    database: RKsHRzqemrfx
-    schema: n8n_sales
+  host: postgres-fb04e5ee-2c80-4773-94bf-47d64c10dee7.c24srvdukvjo.us-east-1.rds.amazonaws.com
+  port: 1470
+  database: RKsHRzqemrfx
+  user: postgres
+  schema: n8n_sales
   passwordSecret:
-    existingSecret: n8n-db-password
-    existingSecretKey: password
+    name: n8n-db-password
+    key: password
 
-queueMode:
-  enabled: true
-  redis:
-    host: redis-sales-master
-    port: 6379
-
-n8n:
-  host: sales.c-5e397ae.kyma.ondemand.com
-  protocol: https
+redis:
+  host: redis-sales-master
+  port: 6379
 
 secretRefs:
   existingSecret: n8n-sales-core-secret
