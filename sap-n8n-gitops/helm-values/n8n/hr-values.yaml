@@ -1,1 +1,38 @@
+image:
+  tag: "2.13.3"
 
+timezone: Europe/Berlin
+
+main:
+  replicas: 1
+
+worker:
+  enabled: true
+  replicas: 1
+
+webhook:
+  enabled: true
+  replicas: 1
+
+database:
+  type: postgres
+  host: postgres-fb04e5ee-2c80-4773-94bf-47d64c10dee7.c24srvdukvjo.us-east-1.rds.amazonaws.com
+  port: 1470
+  database: RKsHRzqemrfx
+  schema: n8n_hr
+  userFromSecret:
+    name: sap-n8n-postgres-binding
+    key: 074d01b045cd
+  passwordFromSecret:
+    name: sap-n8n-postgres-binding
+    key: 6a9df3836b4542ad4e0b007f
+
+redis:
+  host: redis-hr-master
+  port: 6379
+
+queueMode: true
+
+n8n:
+  host: sap-n8n-hr.c-5e397ae.kyma.ondemand.com
+  protocol: https

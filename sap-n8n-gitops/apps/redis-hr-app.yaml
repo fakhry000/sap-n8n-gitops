@@ -1,1 +1,25 @@
-
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: redis-hr
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://charts.bitnami.com/bitnami
+      chart: redis
+      targetRevision: 25.3.9
+      helm:
+        releaseName: redis-hr
+        valueFiles:
+          - \/sap-n8n-gitops/helm-values/redis/hr-values.yaml
+    - repoURL: https://github.com/fakhry000/sap-n8n-gitops.git
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: sap-n8n-kyma
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

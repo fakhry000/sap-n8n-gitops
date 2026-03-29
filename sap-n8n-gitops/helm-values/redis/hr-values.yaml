@@ -1,23 +1,6 @@
 architecture: standalone
-
 auth:
   enabled: false
-
 master:
   persistence:
     enabled: false
-
-  resources:
-    requests:
-      cpu: 100m
-      memory: 128Mi
-    limits:
-      cpu: 300m
-      memory: 256Mi
-
-  service:
-    type: ClusterIP
-    port: 6379
-
-replica:
-  replicaCount: 0
