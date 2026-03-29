@@ -1,20 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-app
+  name: ingress
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/fakhry000/sap-n8n-gitops.git
     targetRevision: main
-    path: sap-n8n-gitops/apps
+    path: sap-n8n-gitops/ingress
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: sap-n8n-kyma
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
