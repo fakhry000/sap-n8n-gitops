@@ -15,24 +15,22 @@ webhook:
   replicas: 1
 
 database:
-  type: postgres
-  host: postgres-fb04e5ee-2c80-4773-94bf-47d64c10dee7.c24srvdukvjo.us-east-1.rds.amazonaws.com
-  port: 1470
-  database: RKsHRzqemrfx
-  schema: n8n_it
-  userFromSecret:
-    name: sap-n8n-postgres-binding
-    key: 074d01b045cd
-  passwordFromSecret:
-    name: sap-n8n-postgres-binding
-    key: 6a9df3836b4542ad4e0b007f
+  type: postgresdb
+  postgresdb:
+    host: postgres-fb04e5ee-2c80-4773-94bf-47d64c10dee7.c24srvdukvjo.us-east-1.rds.amazonaws.com
+    port: 1470
+    database: RKsHRzqemrfx
+    schema: n8n_it
 
-redis:
-  host: redis-it-master
-  port: 6379
-
-queueMode: true
+queueMode:
+  enabled: true
+  redis:
+    host: redis-it-master
+    port: 6379
 
 n8n:
   host: ITservices.c-5e397ae.kyma.ondemand.com
   protocol: https
+
+secretRefs:
+  existingSecret: sap-n8n-postgres-binding
