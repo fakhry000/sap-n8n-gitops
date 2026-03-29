@@ -5,14 +5,19 @@ metadata:
   namespace: argocd
 spec:
   project: default
+
   source:
     repoURL: https://github.com/fakhry000/sap-n8n-gitops.git
     targetRevision: main
-    path: sap-n8n-gitops/apps
+    path: sap-n8n-gitops
+
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
+
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
