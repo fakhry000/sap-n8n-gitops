@@ -5,14 +5,19 @@ timezone: Europe/Berlin
 
 main:
   replicas: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 256Mi
+    limits:
+      cpu: 250m
+      memory: 512Mi
 
 worker:
-  enabled: true
-  replicas: 1
+  enabled: false
 
 webhook:
-  enabled: true
-  replicas: 1
+  enabled: false
 
 database:
   type: postgresdb
@@ -21,6 +26,9 @@ database:
     port: 1470
     database: RKsHRzqemrfx
     schema: n8n_it
+  passwordSecret:
+    existingSecret: n8n-db-password
+    existingSecretKey: password
 
 queueMode:
   enabled: true
@@ -33,4 +41,4 @@ n8n:
   protocol: https
 
 secretRefs:
-  existingSecret: sap-n8n-postgres-binding
+  existingSecret: n8n-it-core-secret
