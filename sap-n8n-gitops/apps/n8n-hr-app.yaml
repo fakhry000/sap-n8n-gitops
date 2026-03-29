@@ -6,13 +6,13 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: oci://ghcr.io/n8n-io/n8n-helm-chart
-      chart: n8n
-      targetRevision: 1.1.0
+    - repoURL: https://github.com/n8n-io/n8n-hosting.git
+      targetRevision: v1.1.0
+      path: charts/n8n
       helm:
         releaseName: n8n-hr
         valueFiles:
-          - \/sap-n8n-gitops/helm-values/n8n/hr-values.yaml
+          - $values/sap-n8n-gitops/helm-values/n8n/hr-values.yaml
     - repoURL: https://github.com/fakhry000/sap-n8n-gitops.git
       targetRevision: main
       ref: values

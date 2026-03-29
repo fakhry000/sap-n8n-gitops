@@ -12,7 +12,7 @@ spec:
       helm:
         releaseName: redis-sales
         valueFiles:
-          - \/sap-n8n-gitops/helm-values/redis/sales-values.yaml
+          - $values/sap-n8n-gitops/helm-values/redis/sales-values.yaml
     - repoURL: https://github.com/fakhry000/sap-n8n-gitops.git
       targetRevision: main
       ref: values
