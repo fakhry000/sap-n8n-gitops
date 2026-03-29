@@ -26,6 +26,9 @@ database:
   database: FYkYoolAgeWd
   user: 074d01b045cd
   schema: n8n_sales
+  ssl:
+    enabled: true
+    rejectUnauthorized: false
   passwordSecret:
     name: n8n-db-password
     key: password
