@@ -49,8 +49,8 @@ secretRefs:
 taskRunners:
   enabled: true
   authToken:
-    existingSecret: n8n-hr-runners-secret
-    existingSecretKey: token
+    existingSecret: n8n-hr-task-runners
+    existingSecretKey: N8N_RUNNERS_AUTH_TOKEN
   broker:
     listenAddress: "0.0.0.0"
     port: 5679
