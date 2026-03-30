@@ -13,10 +13,12 @@ main:
       cpu: 250m
       memory: 512Mi
 
-worker:
-  enabled: false
+queueMode:
+  enabled: true
+  workerReplicaCount: 2
+  workerConcurrency: 10
 
-webhook:
+webhookProcessor:
   enabled: false
 
 database:
@@ -44,32 +46,14 @@ n8n:
 secretRefs:
   existingSecret: n8n-hr-core-secret
 
-extraEnv:
-  - name: N8N_RUNNERS_ENABLED
-    value: "true"
-  - name: N8N_RUNNERS_MODE
-    value: "external"
-  - name: N8N_RUNNERS_BROKER_PORT
-    value: "5679"
-  - name: N8N_RUNNERS_BROKER_LISTEN_ADDRESS
-    value: "0.0.0.0"
-  - name: N8N_RUNNERS_AUTH_TOKEN
-    valueFrom:
-      secretKeyRef:
-        name: n8n-hr-runners-secret
-        key: token
-
-extraContainers:
-  - name: n8n-runners
-    image: docker.n8n.io/n8nio/runners:2.13.3
-    imagePullPolicy: IfNotPresent
-    env:
-      - name: N8N_RUNNERS_AUTH_TOKEN
-        valueFrom:
-          secretKeyRef:
-            name: n8n-hr-runners-secret
-            key: token
-      - name: N8N_RUNNERS_TASK_BROKER_URI
-        value: "http://127.0.0.1:5679"
-      - name: N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT
-        value: "15"
+taskRunners:
+  enabled: true
+  authToken:
+    existingSecret: n8n-hr-runners-secret
+    existingSecretKey: token
+  broker:
+    listenAddress: "0.0.0.0"
+    port: 5679
+  launcher:
+    autoShutdownTimeout: 15
+  nativePythonRunner: true
