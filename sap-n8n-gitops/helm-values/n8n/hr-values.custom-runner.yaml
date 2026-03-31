@@ -1,0 +1,71 @@
+image:
+  tag: "2.13.3"
+
+timezone: Europe/Berlin
+
+main:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 25m
+      memory: 256Mi
+    limits:
+      cpu: 200m
+      memory: 512Mi
+
+queueMode:
+  enabled: true
+  workerReplicaCount: 1
+  workerConcurrency: 10
+
+webhookProcessor:
+  enabled: false
+
+database:
+  type: postgresdb
+  host: postgres-0c548fc8-fc4a-4fbe-adfe-6f12e1795f34.c24srvdukvjo.us-east-1.rds.amazonaws.com
+  port: 1470
+  database: FYkYoolAgeWd
+  user: 074d01b045cd
+  schema: n8n_hr
+  ssl:
+    enabled: true
+    rejectUnauthorized: false
+  passwordSecret:
+    name: n8n-db-password
+    key: password
+
+redis:
+  host: redis-hr-master
+  port: 6379
+
+n8n:
+  host: sandbox-n8n-hr.c-5e397ae.kyma.ondemand.com
+  protocol: https
+
+secretRefs:
+  existingSecret: n8n-hr-core-secret
+
+taskRunners:
+  enabled: true
+  image:
+    repository: ghcr.io/fakhry000/n8n-runners
+    tag: "2.13.3-custom"
+    pullPolicy: IfNotPresent
+  authToken:
+    existingSecret: n8n-hr-task-runners
+    existingSecretKey: N8N_RUNNERS_AUTH_TOKEN
+  broker:
+    listenAddress: "0.0.0.0"
+    port: 5679
+  launcher:
+    autoShutdownTimeout: 15
+  nativePythonRunner: true
+
+extraEnv:
+  - name: WEBHOOK_URL
+    value: "https://sandbox-n8n-hr.c-5e397ae.kyma.ondemand.com"
+  - name: N8N_EDITOR_BASE_URL
+    value: "https://sandbox-n8n-hr.c-5e397ae.kyma.ondemand.com"
+  - name: N8N_PROXY_HOPS
+    value: "1"
