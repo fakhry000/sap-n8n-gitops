@@ -7,12 +7,12 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/n8n-io/n8n-hosting.git
-      targetRevision: main
+      targetRevision: v1.1.0
       path: charts/n8n
       helm:
         releaseName: n8n-sales
         valueFiles:
-          - $values/sap-n8n-gitops/helm-values/n8n/sales-values.yaml
+          - $values/helm-values/n8n/sales-values.yaml
     - repoURL: https://github.com/fakhry000/sap-n8n-gitops.git
       targetRevision: main
       ref: values

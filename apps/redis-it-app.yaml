@@ -8,11 +8,11 @@ spec:
   sources:
     - repoURL: https://charts.bitnami.com/bitnami
       chart: redis
-      targetRevision: 25.3.9
+      targetRevision: 20.11.3
       helm:
         releaseName: redis-it
         valueFiles:
-          - $values/sap-n8n-gitops/helm-values/redis/it-values.yaml
+          - $values/helm-values/redis/it-values.yaml
     - repoURL: https://github.com/fakhry000/sap-n8n-gitops.git
       targetRevision: main
       ref: values

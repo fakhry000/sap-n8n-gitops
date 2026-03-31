@@ -12,7 +12,7 @@ spec:
       helm:
         releaseName: n8n-hr
         valueFiles:
-          - $values/sap-n8n-gitops/helm-values/n8n/hr-values.yaml
+          - $values/helm-values/n8n/hr-values.yaml
     - repoURL: https://github.com/fakhry000/sap-n8n-gitops.git
       targetRevision: main
       ref: values
