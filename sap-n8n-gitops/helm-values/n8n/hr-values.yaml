@@ -65,7 +65,3 @@ extraEnv:
     value: "https://sandbox-n8n-hr.c-5e397ae.kyma.ondemand.com"
   - name: N8N_PROXY_HOPS
     value: "1"
-  - name: N8N_RUNNERS_STDLIB_ALLOW
-    value: "datetime"
-  - name: N8N_RUNNERS_EXTERNAL_ALLOW
-    value: "pandas,openpyxl,pptx"
