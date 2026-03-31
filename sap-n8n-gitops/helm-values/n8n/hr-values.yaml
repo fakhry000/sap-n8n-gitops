@@ -57,3 +57,11 @@ taskRunners:
   launcher:
     autoShutdownTimeout: 15
   nativePythonRunner: true
+
+extraEnv:
+  - name: WEBHOOK_URL
+    value: "https://sandbox-n8n-hr.c-5e397ae.kyma.ondemand.com"
+  - name: N8N_EDITOR_BASE_URL
+    value: "https://sandbox-n8n-hr.c-5e397ae.kyma.ondemand.com"
+  - name: N8N_PROXY_HOPS
+    value: "1"
