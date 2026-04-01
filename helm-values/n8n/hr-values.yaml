@@ -13,11 +13,11 @@ main:
       cpu: 200m
       memory: 512Mi
   extraEnv:
-    - name: WEBHOOK_URL
+    WEBHOOK_URL:
       value: "https://sandbox-n8n-hr.c-5e397ae.kyma.ondemand.com/"
-    - name: N8N_EDITOR_BASE_URL
+    N8N_EDITOR_BASE_URL:
       value: "https://sandbox-n8n-hr.c-5e397ae.kyma.ondemand.com/"
-    - name: N8N_PROXY_HOPS
+    N8N_PROXY_HOPS:
       value: "1"
 
 queueMode:
