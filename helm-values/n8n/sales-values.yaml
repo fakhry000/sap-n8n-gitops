@@ -51,7 +51,7 @@ taskRunners:
   image:
     repository: ghcr.io/fakhry000/n8n-runners
     tag: "2.13.3-custom"
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   authToken:
     existingSecret: n8n-sales-task-runners
     existingSecretKey: N8N_RUNNERS_AUTH_TOKEN
