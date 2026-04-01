@@ -3,8 +3,10 @@ architecture: standalone
 auth:
   enabled: false
 
+global:
+  imageRegistry: europe-docker.pkg.dev/kyma-project/prod/external
+
 image:
-  registry: europe-docker.pkg.dev/kyma-project/prod/external
   repository: bitnami/redis
   tag: "7.0.15-debian-11-r0"
   pullPolicy: IfNotPresent
