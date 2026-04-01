@@ -7,16 +7,18 @@ main:
   replicas: 1
   resources:
     requests:
-      cpu: 50m
-      memory: 256Mi
+      cpu: 10m
+      memory: 128Mi
     limits:
-      cpu: 250m
+      cpu: 200m
       memory: 512Mi
 
-worker:
-  enabled: false
+queueMode:
+  enabled: true
+  workerReplicaCount: 1
+  workerConcurrency: 5
 
-webhook:
+webhookProcessor:
   enabled: false
 
 database:
@@ -38,8 +40,32 @@ redis:
   port: 6379
 
 n8n:
-  host: sales.c-5e397ae.kyma.ondemand.com
+  host: sandbox-n8n-sales.c-5e397ae.kyma.ondemand.com
   protocol: https
 
 secretRefs:
   existingSecret: n8n-sales-core-secret
+
+taskRunners:
+  enabled: true
+  image:
+    repository: ghcr.io/fakhry000/n8n-runners
+    tag: "2.13.3-custom"
+    pullPolicy: IfNotPresent
+  authToken:
+    existingSecret: n8n-sales-task-runners
+    existingSecretKey: N8N_RUNNERS_AUTH_TOKEN
+  broker:
+    listenAddress: "0.0.0.0"
+    port: 5679
+  launcher:
+    autoShutdownTimeout: 15
+  nativePythonRunner: true
+
+extraEnv:
+  - name: WEBHOOK_URL
+    value: "https://sandbox-n8n-sales.c-5e397ae.kyma.ondemand.com"
+  - name: N8N_EDITOR_BASE_URL
+    value: "https://sandbox-n8n-sales.c-5e397ae.kyma.ondemand.com"
+  - name: N8N_PROXY_HOPS
+    value: "1"
