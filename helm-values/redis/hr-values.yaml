@@ -4,9 +4,9 @@ auth:
   enabled: false
 
 image:
-  registry: docker.io
+  registry: europe-docker.pkg.dev/kyma-project/prod/external
   repository: bitnami/redis
-  tag: "latest"
+  tag: "7.0.15-debian-11-r0"
   pullPolicy: IfNotPresent
 
 master:
